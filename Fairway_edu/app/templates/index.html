@@ -53,9 +53,35 @@
         text-align: center; /* Centers the button */
         margin-top: 20px; /* Adds space above the button */
         }
+        .success-message {
+            color: green;
+            font-weight: bold;
+            margin-top: 1em;
+        }
+        .country-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            margin: 10px;
+        }
+        .country-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+        .country-card .country-name {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+        }
+
     </style>
  
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">  <!-- First Navbar-->
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
@@ -63,7 +89,7 @@
                     <a class="btn btn-outline-secondary" href="#">Log in</a>
                 </li>
                 <li class="nav-item ms-3">
-                    <a class="btn btn-primary me-3" href="#">Sign Up</a>
+                    <a class="btn btn-primary me-3" href="{% url 'sign_up' %}">Sign Up</a>
                 </li>
                 
             </ul>
@@ -83,14 +109,11 @@
                         <a class="navbar-brand ms-2" href="#Enquiry">Enquiry Now</a>
                     </li>
                     <li class="nav-item">
-                        <a class="navbar-brand ms-2" href="#">About Us</a>
+                        <a class="navbar-brand ms-2" href="#Aboutus">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="navbar-brand ms-2" href="#">Destination</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand ms-2" href="#">FAQ</a>
-                    </li>
+                        <a class="navbar-brand ms-2" href="#Destination">Destination</a>
+                    </li>                    
                     <li class="nav-item">
                         <a class="navbar-brand ms-2" href="#">Contact Us</a>
                     </li>
@@ -251,5 +274,92 @@
               </table>
         </div>
     </section>
+    <section id="Aboutus">
+        <div class="container">
+            <br>
+            <br>
+            <table>
+                <tr>
+                    <td style="text-align: left; padding: 20px;">
+                        <h2>About Fairway Education Hub</h2>
+                        <hr style="border-top: 5px solid darkcyan; width: 35%;">
+                        <br>
+                        <h6 style="letter-spacing: 1px; font-family: 'Times New Roman', Times, serif; text-align: justify;">
+                            Welcome to Fairway Education Hub, your trusted partner in achieving your dreams of studying abroad. At Fairway Education Hub, we specialize in guiding students through the process of pursuing education in top international destinations such as the USA, Canada, the UK, Australia, and more. Our dedicated team of experienced consultants is committed to providing personalized support and expert advice at every step of your journey.
+                            We understand that studying abroad can be a daunting experience, and we are here to make it as smooth as possible. From choosing the right course and university to securing admission and visa, we offer comprehensive assistance. Our goal is to empower you to make informed decisions and achieve your full potential in a globalized world.
+                            Let us be your bridge to international education.
+                        </h6>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; padding: 20px;">
+                        <br>
+                        <br>
+                        <h2>Our Mission</h2>
+                        <hr style="border-top: 5px solid blue; width: 15%; margin: 0 auto;">
+                        <br>
+                        <h6 style="text-align: center; letter-spacing: 1px; font-family:'Times New Roman', Times, serif; text-align: justify;">
+                            Our mission is to empower students by offering comprehensive guidance and resources that simplify the complex process of studying abroad. We aim to bridge the gap between students and their desired educational institutions, ensuring a seamless transition to international academic environments. Through personalized counseling, expert advice, and dedicated support, we strive to help students achieve their academic and professional goals. We are committed to providing exceptional service and fostering lifelong relationships with our students.
+                        </h6>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <hr>
+                        <h3 style="text-align: center; font-size: x-large; font-family: 'Times New Roman', Times, serif;"><i>Your trusted partner in international education.</i></h3>
+                        <br>
+                    </td>
+                </tr>
+            </table>    
+        </div>
+    </section>
+    <section id="Destination">
+        <div class="container-fluid bg-dark text-white">
+            <br>
+            <h4 style='text-align: left; font-family: Arial, Helvetica, sans-serif;'>Future Destinations</h4>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="country-card">
+                        <img src="{% static 'images/australia.jpg' %}" alt="Australia">
+                        <div class="country-name">Australia</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="country-card">
+                        <img src="{% static 'images/india.jpg' %}" alt="India">
+                        <div class="country-name">India</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="country-card">
+                        <img src="{% static 'images/Japan.jpg' %}" alt="Japan">
+                        <div class="country-name">Japan</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="country-card">
+                        <img src="{% static 'images/uk.jpg' %}" alt="UK">
+                        <div class="country-name">UK</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="country-card">
+                        <img src="{% static 'images/unitedstate.jpg' %}" alt="United States">
+                        <div class="country-name">United States</div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="country-card">
+                        <img src="{% static 'images/korea.jpg' %}" alt="South Korea">
+                        <div class="country-name">South Korea</div>
+                    </div>
+                </div>
+            </div> 
+    </section>
+     <section id="FAQ">
+
+     </section>      
 </body>
 </html>
