@@ -30,7 +30,7 @@
         .form-control {
             border-radius: 0.25rem;
             box-shadow: none;
-            border: 1px solid #CED4DA;
+            border: 1px solid #ced4da;
         }
         .form-control:focus {
             border-color: #6f42c1;
@@ -39,33 +39,27 @@
         .btn-custom {
             background-color: #6f42c1;
             border-color: #6f42c1;
-            color: white;
         }
         .btn-custom:hover {
             background-color: #5a2d91;
             border-color: #5a2d91;
         }
-        .center-button {
-            display: block;
-            margin: 1rem auto 0 auto;
+        .text-center {
+            text-align: center;
         }
-        .text-danger {
-            color: #dc3545;
+        .small-logo {
+            max-width: 150px;
+            height: auto;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.875em;
+            margin-top: 1rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="text-end mb-4">
-            <a href="{% url 'index' %}" class="btn btn-danger">X</a>
-        </div>
-        {% if messages %}
-            <div class="alert alert-info" role="alert">
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-            </div>
-        {% endif %}
         <div class="text-center mb-4">
             <img src="{% static 'images/logos.png' %}" alt="Logo" class="img-fluid small-logo">
         </div>
@@ -73,10 +67,10 @@
         <form method="post">
             {% csrf_token %}
             <div class="form-group">
-                {{ form.username.label_tag }}
-                {{ form.username|add_class:"form-control"|safe }}
+                <label for="{{ form.username.id_for_label }}">Username</label>
+                {{ form.username }}
                 {% if form.username.errors %}
-                    <div class="text-danger">
+                    <div class="error-message">
                         {% for error in form.username.errors %}
                             <p>{{ error }}</p>
                         {% endfor %}
@@ -84,10 +78,10 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ form.password.label_tag }}
-                {{ form.password|add_class:"form-control"|safe }}
+                <label for="{{ form.password.id_for_label }}">Password</label>
+                {{ form.password }}
                 {% if form.password.errors %}
-                    <div class="text-danger">
+                    <div class="error-message">
                         {% for error in form.password.errors %}
                             <p>{{ error }}</p>
                         {% endfor %}
@@ -95,13 +89,13 @@
                 {% endif %}
             </div>
             {% if form.non_field_errors %}
-                <div class="text-danger">
+                <div class="error-message">
                     {% for error in form.non_field_errors %}
                         <p>{{ error }}</p>
                     {% endfor %}
                 </div>
             {% endif %}
-            <button type="submit" class="btn btn-primary btn-custom center-button">Login</button>
+            <button type="submit" class="btn btn-primary btn-custom w-100">Login</button>
         </form>
         <div class="text-center mt-3">
             <a href="{% url 'sign_up' %}" class="btn btn-link">Sign Up</a>

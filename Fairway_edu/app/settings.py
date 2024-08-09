@@ -58,7 +58,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
+
 
 ROOT_URLCONF = 'app.urls'
 
@@ -147,5 +149,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'riyashakya1920@gmail.com' #change the email
 EMAIL_HOST_PASSWORD = 'jgpk lkqm egti wyth' #with their respective password.
+
+# In settings.py
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Default database session backend
+SESSION_COOKIE_AGE = 1209600  # Two weeks, in seconds
+
 
 

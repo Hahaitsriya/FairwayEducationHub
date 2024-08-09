@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from .models import Consultant
 
 class ConsultantSignUpForm(UserCreationForm):
@@ -9,10 +9,16 @@ class ConsultantSignUpForm(UserCreationForm):
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'})
     )
-    password = forms.CharField(
+    bio = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Bio'}),
+        required=False
+    )
+    password1 = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
     )
-
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password'})
+    )
 
     class Meta:
         model = Consultant
@@ -21,7 +27,15 @@ class ConsultantSignUpForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
-        user.bio = self.cleaned_data['bio']
+        user.bio = self.cleaned_data.get('bio', '')  # Use get to handle optional bio
         if commit:
             user.save()
         return user
+
+class ConsultantLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
+    )

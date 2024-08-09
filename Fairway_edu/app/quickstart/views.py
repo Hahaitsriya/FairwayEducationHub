@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect
 from django.core.mail import send_mail
-from django.contrib.auth import login
-from .forms import ConsultantSignUpForm
+from django.contrib.auth import authenticate, login  as auth_login
+from django.contrib import messages
+from .forms import ConsultantSignUpForm,ConsultantLoginForm,AuthenticationForm
+from .models import *
+from django.contrib.auth import get_user_model
 
 
 # Create your views here.
@@ -38,8 +41,27 @@ def sign_up(request):
         form = ConsultantSignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            return redirect('index')  
+            login(request, user)  
+            messages.success(request, 'Sign up successful! Welcome, {}'.format(user.username))   
+            return redirect('login') 
     else:
         form = ConsultantSignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+def login_view(request):
+    if request.method == 'POST':
+        form = ConsultantLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            
+            if user is not None:
+                auth_login(request, user)
+                messages.success(request, 'Login successful!')
+                return redirect('index')  # Redirect to the homepage or dashboard
+            else:
+                messages.error(request, 'Invalid username or password.')
+    else:
+        form = ConsultantLoginForm()
+    return render(request, 'login.html', {'form': form})
