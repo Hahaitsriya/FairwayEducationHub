@@ -10,7 +10,7 @@ class ConsultantSignUpForm(UserCreationForm):
         widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'})
     )
     bio = forms.CharField(
-        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Bio'}),
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Bio','rows': 3}),
         required=False
     )
     password1 = forms.CharField(

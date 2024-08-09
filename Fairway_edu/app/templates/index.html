@@ -59,26 +59,43 @@
             margin-top: 1em;
         }
         .country-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            margin: 10px;
-        }
-        .country-card img {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-        }
-        .country-card .country-name {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 1.5em;
-            font-weight: bold;
-            text-align: center;
-        }
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.country-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+}
+
+.country-name {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.country-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    font-size: 0.9em;
+}
+
+.country-card:hover .country-description {
+    opacity: 1;
+}
+
 
         .btn-custom {
             background-color: #6f42c1;
@@ -336,46 +353,66 @@
     <section id="Destination">
         <div class="container-fluid bg-dark text-white">
             <br>
-            <h4 style='text-align: left; font-family: Arial, Helvetica, sans-serif;'>Future Destinations</h4>
+            <h4 style="text-align: left; font-family: Arial, Helvetica, sans-serif;">Future Destinations</h4>
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="country-card">
                         <img src="{% static 'images/australia.jpg' %}" alt="Australia">
                         <div class="country-name">Australia</div>
+                        <div class="country-description">
+                            Explore the outback, visit the Great Barrier Reef, and experience vibrant cities.
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="country-card">
                         <img src="{% static 'images/india.jpg' %}" alt="India">
                         <div class="country-name">India</div>
+                        <div class="country-description">
+                            Discover the Taj Mahal, enjoy diverse cultures, and savor spicy cuisines.
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="country-card">
-                        <img src="{% static 'images/Japan.jpg' %}" alt="Japan">
+                        <img src="{% static 'images/japan.jpg' %}" alt="Japan">
                         <div class="country-name">Japan</div>
+                        <div class="country-description">
+                            Experience the cherry blossoms, futuristic cities, and ancient traditions.
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="country-card">
                         <img src="{% static 'images/uk.jpg' %}" alt="UK">
                         <div class="country-name">UK</div>
+                        <div class="country-description">
+                            Visit historic landmarks, explore London, and enjoy the British countryside.
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="country-card">
                         <img src="{% static 'images/unitedstate.jpg' %}" alt="United States">
                         <div class="country-name">United States</div>
+                        <div class="country-description">
+                            Discover diverse landscapes, iconic cities, and rich cultural experiences.
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="country-card">
                         <img src="{% static 'images/korea.jpg' %}" alt="South Korea">
                         <div class="country-name">South Korea</div>
+                        <div class="country-description">
+                            Explore modern Seoul, ancient palaces, and enjoy K-pop culture.
+                        </div>
                     </div>
                 </div>
-            </div> 
+            </div>
+        </div>
     </section>
+    
      <section id="FAQ">
 
      </section>      

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.core.mail import send_mail
-from django.contrib.auth import authenticate, login  as auth_login
+from django.contrib.auth import authenticate, login  as auth_login, login
 from django.contrib import messages
 from .forms import ConsultantSignUpForm,ConsultantLoginForm,AuthenticationForm
 from .models import *
@@ -35,33 +35,39 @@ def index(request):
     
     return render(request, 'index.html')
 
-
 def sign_up(request):
     if request.method == 'POST':
         form = ConsultantSignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  
-            messages.success(request, 'Sign up successful! Welcome, {}'.format(user.username))   
-            return redirect('login') 
+            login(request, user)
+            return redirect('index')  # Redirect to a dashboard or any other page after sign-up
     else:
         form = ConsultantSignUpForm()
+    
     return render(request, 'signup.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':
-        form = ConsultantLoginForm(request.POST)
+        form = ConsultantLoginForm(request, data=request.POST)
+        
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
+            
+            user = authenticate(request, username=username, password=password)
             
             if user is not None:
                 auth_login(request, user)
                 messages.success(request, 'Login successful!')
-                return redirect('index')  # Redirect to the homepage or dashboard
+                return redirect('index')  # Redirect to the dashboard or another page
             else:
                 messages.error(request, 'Invalid username or password.')
+        else:
+            # Print form errors for debugging
+            print("Form errors:", form.errors)
+            messages.error(request, 'Form is not valid.')
     else:
         form = ConsultantLoginForm()
+
     return render(request, 'login.html', {'form': form})

@@ -4,103 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    {% load bootstrap5 %}
-    {% load static %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% block content %}
     <style>
-        body {
-            background-color: #5a2d91;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
+        .login-container {
             max-width: 400px;
-            background: #F8F9FA;
-            padding: 2rem;
-            border-radius: 8px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
         }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-control {
-            border-radius: 0.25rem;
-            box-shadow: none;
-            border: 1px solid #ced4da;
-        }
-        .form-control:focus {
-            border-color: #6f42c1;
-            box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25);
-        }
-        .btn-custom {
-            background-color: #6f42c1;
-            border-color: #6f42c1;
-        }
-        .btn-custom:hover {
-            background-color: #5a2d91;
-            border-color: #5a2d91;
-        }
-        .text-center {
+        
+        .form-title {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
             text-align: center;
         }
-        .small-logo {
-            max-width: 150px;
-            height: auto;
+        
+        .btn-custom {
+            width: 100%;
+            background-color: #6f42c1;
+            color: white;
         }
-        .error-message {
-            color: red;
-            font-size: 0.875em;
-            margin-top: 1rem;
+
+        .alternative-links a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .alternative-links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="text-center mb-4">
-            <img src="{% static 'images/logos.png' %}" alt="Logo" class="img-fluid small-logo">
-        </div>
-        <h3 class="text-center mb-4">Login</h3>
-        <form method="post">
+    <div class="login-container">
+        <h3 class="form-title">Login</h3>
+        <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
             <div class="form-group">
-                <label for="{{ form.username.id_for_label }}">Username</label>
+                {{ form.username.label_tag }}
                 {{ form.username }}
-                {% if form.username.errors %}
-                    <div class="error-message">
-                        {% for error in form.username.errors %}
-                            <p>{{ error }}</p>
-                        {% endfor %}
-                    </div>
-                {% endif %}
             </div>
             <div class="form-group">
-                <label for="{{ form.password.id_for_label }}">Password</label>
+                {{ form.password.label_tag }}
                 {{ form.password }}
-                {% if form.password.errors %}
-                    <div class="error-message">
-                        {% for error in form.password.errors %}
-                            <p>{{ error }}</p>
-                        {% endfor %}
-                    </div>
-                {% endif %}
             </div>
-            {% if form.non_field_errors %}
-                <div class="error-message">
-                    {% for error in form.non_field_errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-            <button type="submit" class="btn btn-primary btn-custom w-100">Login</button>
+            <button type="submit" class="btn btn-primary btn-custom">Login</button>
         </form>
-        <div class="text-center mt-3">
-            <a href="{% url 'sign_up' %}" class="btn btn-link">Sign Up</a>
-            <a href="{% url 'index' %}" class="btn btn-link">Home</a>
+        <div class="text-center mt-3 alternative-links">
+            <a href="{% url 'sign_up' %}">Don't have an account? Sign up</a>
         </div>
+    
+        {% if messages %}
+            <div class="messages mt-3">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
+    
+{% endblock %}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
