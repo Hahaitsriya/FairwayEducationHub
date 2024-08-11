@@ -1,10 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login  as auth_login, login
 from django.contrib import messages
-from .forms import ConsultantSignUpForm,ConsultantLoginForm,AuthenticationForm
+from .forms import ConsultantSignUpForm,ConsultantLoginForm,CourseForm
 from .models import *
-from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -60,7 +60,7 @@ def login_view(request):
             if user is not None:
                 auth_login(request, user)
                 messages.success(request, 'Login successful!')
-                return redirect('index')  # Redirect to the dashboard or another page
+                return redirect('dashboard')  # Redirect to the dashboard or another page
             else:
                 messages.error(request, 'Invalid username or password.')
         else:
@@ -71,3 +71,66 @@ def login_view(request):
         form = ConsultantLoginForm()
 
     return render(request, 'login.html', {'form': form})
+
+def course_list(request):
+    courses = Course.objects.filter(consultant=request.user)
+    user = request.user
+    username = user.username
+    return render(request, 'course/course_list.html', {'courses': courses})
+
+@login_required
+def dashboard(request):
+    # Extract the logged-in user's details
+    user = request.user
+    username = user.username
+    email = user.email
+    courses = Course.objects.filter(consultant=user)
+    
+
+    context = {
+        'username': username,
+        'email': email,
+        'courses': courses
+    }
+    return render(request, 'dashboard.html', context)
+
+@login_required
+def course_create(request):
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            course = form.save(commit=False)
+            course.consultant = request.user
+            course.save()
+            return redirect('course_list')
+    else:
+        form = CourseForm()
+    return render(request, 'course/course_form.html', {'form': form})
+
+@login_required
+def abc(request):
+     # Extract the logged-in user's details
+    user = request.user
+    username = user.username
+    email = user.email
+    courses = Course.objects.filter(consultant=user)
+    
+
+    context = {
+        'username': username,
+        'email': email,
+        'courses': courses
+    }
+    return render(request, 'course/abc.html', context)
+
+
+@login_required
+def delete_course(request, id):
+    course = Course.objects.filter(consultant=request.user, pk=id)
+    
+    if request.method == 'POST':
+        course.delete()
+        return redirect('dashboard')  # Redirect to dashboard or another appropriate page
+    
+    return render(request, 'course/course_delete.html', {'course': course})
+

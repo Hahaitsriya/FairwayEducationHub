@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
-from .models import Consultant
+from .models import Consultant, Course
 
 class ConsultantSignUpForm(UserCreationForm):
     username = forms.CharField(
@@ -39,3 +39,8 @@ class ConsultantLoginForm(AuthenticationForm):
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})
     )
+
+class CourseForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = ['title', 'description']

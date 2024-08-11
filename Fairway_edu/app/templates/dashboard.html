@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    {% load bootstrap5 %}
+    {% load static %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <style>
+        .course-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        .course-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .course-description {
+            font-size: 1rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fuild">
+        <div class="container-fuild p-5 my-3 border fixed" style="border-radius: 25px; margin-left: 20px; margin-right: 20px; background-color: #BF9ACA; font-family: 'Times New Roman', Times, serif;">
+            <h1>Welcome, {{ username }}!</h1>
+            <p><i>We’re thrilled to have you here. Your leadership and guidance continue to drive our success. Let's make today another great day of progress!</i></p>
+        </div>
+        <hr style="border: none; height: 2px; background: linear-gradient(to right, #BF9ACA); border-radius: 5px; margin: 20px 0;">
+
+        <br>
+        <div class="container-fluid p-5 my-3 border" style="border-radius: 25px; margin-left: 20px; margin-right: 20px; background-color: bisque; font-family: 'Times New Roman', Times, serif;">
+            <h2>Courses:</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="course-card">
+                        <div class="course-name">View All  Courses</div>
+                        <div class="course-description">
+                            See the full list of courses available.
+                            <br>
+                            <hr>
+                            <a class="btn btn-outline-primary" href="{% url 'course_list' %}"> Course List</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="course-card">
+                        <div class="course-name">Add Course</div>
+                        <div class="course-description">
+                            Create a new course for enrollment.
+                            <br>
+                            <hr>
+                            <a class="btn btn-outline-primary" href="{% url 'course_create' %}">Add Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="course-card">
+                        <div class="course-name">Delete Course</div>
+                        <div class="course-description">
+                            Remove course from the catalog.
+                            <br>
+                            <hr>
+                            <a class="btn btn-outline-primary" href="{% url 'abc' %}">Add Course</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
