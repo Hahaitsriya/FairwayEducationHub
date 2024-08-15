@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.quickstart.views import index,sign_up,login_view,course_list,dashboard,course_create,delete_course,abc
+from app.quickstart.views import index,sign_up,login_view,course_list,dashboard,course_create,delete_course,c_delete
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -30,6 +30,6 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('course/course_list/', course_list, name='course_list'),
     path('course/course_form/', course_create, name='course_create'),
-    path('course/abc/', abc, name='abc'),
+    path('course/c_delete/', c_delete, name='c_delete'),
     path('course/course_delete/<int:id>/', delete_course, name='delete_course'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

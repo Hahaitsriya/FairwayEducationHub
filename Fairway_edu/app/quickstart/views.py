@@ -75,7 +75,6 @@ def login_view(request):
 def course_list(request):
     courses = Course.objects.filter(consultant=request.user)
     user = request.user
-    username = user.username
     return render(request, 'course/course_list.html', {'courses': courses})
 
 @login_required
@@ -102,13 +101,13 @@ def course_create(request):
             course = form.save(commit=False)
             course.consultant = request.user
             course.save()
-            return redirect('course_list')
+            return redirect('dashboard')
     else:
         form = CourseForm()
     return render(request, 'course/course_form.html', {'form': form})
 
 @login_required
-def abc(request):
+def c_delete(request):
      # Extract the logged-in user's details
     user = request.user
     username = user.username
@@ -121,7 +120,7 @@ def abc(request):
         'email': email,
         'courses': courses
     }
-    return render(request, 'course/abc.html', context)
+    return render(request, 'course/c_delete.html', context)
 
 
 @login_required
