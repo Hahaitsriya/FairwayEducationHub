@@ -47,9 +47,9 @@
         }
     </style>
 </head>
-<body>
+<body style="font-family: 'Times New Roman', Times, serif;">
     <div class="container">
-        <h2>Upload Pictures to "{{ folder.name }}"</h2>
+        <h2>Upload Pictures to {{ folder.name }}</h2>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ formset.management_form }}

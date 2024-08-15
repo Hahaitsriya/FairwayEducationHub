@@ -77,9 +77,9 @@
         }
     </style>
 </head>
-<body>
+<body style="font-family: 'Times New Roman', Times, serif;">
     <div class="container">
-        <h2>Pictures in "{{ folder.name }}"</h2>
+        <h2>Pictures in {{ folder.name }}</h2>
         <div class="row">
             {% for picture in pictures %}
                 <div class="col-md-4">
@@ -94,6 +94,9 @@
                             <p class="card-text">{{ picture.description }}</p>
                         </div>
                     </div>
+                    <a class="btn btn-outline-danger" href="{% url 'view_folder' %}" style="border-radius: 30px;">Cancel</a>
+                    <hr>
+                    <br>
                 </div>
             {% empty %}
                 <p>No pictures available.</p>

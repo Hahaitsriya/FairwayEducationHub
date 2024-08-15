@@ -94,13 +94,15 @@ def dashboard(request):
     email = user.email
     courses = Course.objects.filter(consultant=user)
     folders = Folder.objects.filter(consultant=request.user)
+    services = Services.objects.filter(consultant=request.user)
     
 
     context = {
         'username': username,
         'email': email,
         'courses': courses,
-        'folders': folders 
+        'folders': folders,
+        'services': services,
     }
     return render(request, 'dashboard.html', context)
 
@@ -255,3 +257,23 @@ def view_services(request):
     # Get all folders regardless of user authentication
     services = Services.objects.all()
     return render(request, 'Services/view_services.html', {'services': services})
+
+@login_required
+def delete_service(request, id):
+    # Fetch the service object, or return 404 if not found
+    service = get_object_or_404(Services, consultant=request.user, pk=id)
+    
+    if request.method == 'POST':
+        # Delete the service
+        service.delete()
+        # Redirect to the dashboard or another appropriate page
+        return redirect('dashboard')
+    
+    # Render the confirmation page with the service object
+    return render(request, 'Services/delete_services.html', {'service': service})
+
+@login_required
+def service_del(request):
+    service = Services.objects.filter(consultant=request.user)
+    return render(request, 'Services/service_del.html', {'service': service})
+

@@ -31,6 +31,7 @@
             text-align: center; /* Centered heading */
         }
         .card {
+            background: linear-gradient(135deg, #cdcbe7, #4a4a4a);
             border: none; /* No border for the card */
             border-radius: 8px; /* Rounded corners for the card */
             margin-bottom: 20px; /* Space between cards */
@@ -53,7 +54,7 @@
             color: #555; /* Slightly lighter text color */
         }
         .card-link {
-            color: #007bff; /* Link color */
+            color: #000000; /* Link color */
             text-decoration: none; /* Remove underline */
             font-weight: bold; /* Bold text for link */
         }
@@ -70,15 +71,14 @@
         }
     </style>
 </head>
-<body>
+<body style="font-family: 'Times New Roman', Times, serif;">
     <div class="container">
         <h2>Gallery</h2>
         <div class="row">
             {% for folder in folders %}
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ folder.id }}</h5>
+                        <div class="card-body">                          
                             <h5 class="card-title">{{ folder.name }}</h5>
                             <p class="card-text">{{ folder.description }}</p>
                             <a href="{% url 'view_picture' folder.id %}" class="card-link">View Pictures</a>

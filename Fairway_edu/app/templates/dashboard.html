@@ -151,7 +151,7 @@
                 <div class="course-card">
                     <div class="course-name">Add Folders & Pictures</div>
                     <div class="course-description">
-                        Create a new course for enrollment.
+                        Create new folders for images.
                         <br><hr>
                         <a class="btn btn-outline-primary" href="{% url 'create_folder' %}">Create Folder</a>
                     </div>
@@ -161,7 +161,7 @@
                 <div class="course-card">
                     <div class="course-name">Delete Folder</div>
                     <div class="course-description">
-                        Remove Folder from the catalog.
+                        Remove Folder and pictures from the catalog.
                         <br><hr>
                         <a class="btn btn-outline-danger" href="{% url 'confirm_delete_folder' %}">Delete Folder</a>
                     </div>
@@ -180,7 +180,7 @@
             <div class="course-card">
                 <div class="course-name">View Services </div>
                 <div class="course-description">
-                    See all the folders of available pictures.
+                    See all available services.
                     <br><hr>
                     <a class="btn btn-outline-primary" href="{% url 'view_services' %}">View Services</a>
                 </div>
@@ -188,9 +188,9 @@
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="course-card">
-                <div class="course-name">Add Folders & Pictures</div>
+                <div class="course-name">Add Services</div>
                 <div class="course-description">
-                    Create a new course for enrollment.
+                    Adds up new Services.
                     <br><hr>
                     <a class="btn btn-outline-primary" href="{% url 'upload_services' %}">Create Services</a>
                 </div>
@@ -198,16 +198,15 @@
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="course-card">
-                <div class="course-name">Delete Folder</div>
+                <div class="course-name">Delete Services</div>
                 <div class="course-description">
-                    Remove Folder from the catalog.
+                    Remove Services from the catalog.
                     <br><hr>
-                    <a class="btn btn-outline-danger" href="{% url 'confirm_delete_folder' %}">Delete Folder</a>
+                    <a class="btn btn-outline-primary" href="{% url 'service_del'%}">Create Services</a>
                 </div>
             </div>
         </div>
     </div>  
 </div>
-        
 </body>
 </html>

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.quickstart.views import index,sign_up,login_view,course_list,dashboard,course_create,delete_course,c_delete,create_folder,upload_pictures,view_folders,view_pictures,redirect_based_on_role,user_logout,delete_folder,confirm_delete_folder,upload_services,view_services
+from app.quickstart.views import index,sign_up,login_view,course_list,dashboard,course_create,delete_course,c_delete,create_folder,upload_pictures,view_folders,view_pictures,redirect_based_on_role,user_logout,delete_folder,confirm_delete_folder,upload_services,view_services,delete_service,service_del
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -42,6 +42,9 @@ urlpatterns = [
     path('Services/upload_services/',upload_services,name='upload_services'),
     path('Service/view_services',view_services,name='view_services'),
     path('logout/', user_logout, name='logout'),
+    path('services/delete/<int:id>/', delete_service, name='delete_service'),
+    path('services/delete/', service_del, name='service_del'),
+   
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
 
 if settings.DEBUG:
