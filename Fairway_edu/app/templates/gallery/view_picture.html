@@ -93,14 +93,14 @@
                             <h5 class="card-title">{{ picture.title }}</h5>
                             <p class="card-text">{{ picture.description }}</p>
                         </div>
-                    </div>
-                    <a class="btn btn-outline-danger" href="{% url 'view_folder' %}" style="border-radius: 30px;">Cancel</a>
+                    </div>                    
                     <hr>
                     <br>
                 </div>
             {% empty %}
                 <p>No pictures available.</p>
             {% endfor %}
+            <a class="btn btn-outline-danger" href="{% url 'view_folder' %}" style="border-radius: 30px;">Cancel</a>
         </div>
 </body>
 </html>

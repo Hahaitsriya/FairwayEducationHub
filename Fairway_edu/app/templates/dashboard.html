@@ -42,6 +42,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 10px;
+
         }
 
         .course-description {
@@ -68,11 +69,12 @@
         }
 
         /* Additional styling for card title and description */
-        .course-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+    .course-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
 
         .course-description {
             font-size: 1rem;
@@ -96,7 +98,9 @@
             <hr style="border: none; height: 2px; background: linear-gradient(to right, #BF9ACA); border-radius: 5px; margin: 20px 0;">
             <a class="btn btn-outline-danger" href="{% url 'logout' %}">Log Out</a>
         </div>
-        <h2 style="padding-left: 100px; font-family:'Times New Roman', Times, serif;"> Courses : </h2>
+        <div class="course-name">
+            <h2 style="padding-left: 100px; font-family:'Times New Roman', Times, serif;"> Courses : </h2>
+        </div>
         <hr class="styled-hr">
         <br>
         <div class="row">
@@ -133,7 +137,9 @@
         </div>
         <hr>
         <br>
-        <h2 style="padding-left: 100px; font-family:'Times New Roman', Times, serif;"> Gallery : </h2>
+        <div class="course-name">
+            <h2 style="padding-left: 100px; font-family:'Times New Roman', Times, serif;"> Gallery : </h2>
+        </div>
         <hr class="styled-hr">
         <br>
         <div class="row">
@@ -172,7 +178,9 @@
 
     <hr>
     <br>
-    <h2 style="padding-left: 100px; font-family:'Times New Roman', Times, serif;"> Services : </h2>
+    <div class="course-name">
+        <h2 style="padding-left: 100px; font-family:'Times New Roman', Times, serif;"> Services : </h2>
+    </div>
     <hr class="styled-hr">
     <br>
     <div class="row">
@@ -202,7 +210,7 @@
                 <div class="course-description">
                     Remove Services from the catalog.
                     <br><hr>
-                    <a class="btn btn-outline-primary" href="{% url 'service_del'%}">Create Services</a>
+                    <a class="btn btn-outline-danger" href="{% url 'service_del'%}">Delete Services</a>
                 </div>
             </div>
         </div>
